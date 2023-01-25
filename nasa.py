@@ -65,7 +65,7 @@ def index():
         sorted_list = sorted(isim_km, key=lambda x: x[1])
         sorted_list=sorted_list[:10]
 
-        return render_template("events.html", events = sorted_list)
-    return render_template('index.html')
+        return render_template("index2.html", events = sorted_list)
+    return render_template('index2.html')
 if __name__ == "__main__":
     app.run(debug=True)
