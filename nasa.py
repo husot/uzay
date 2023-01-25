@@ -19,7 +19,7 @@ app = Flask(__name__)
 def index():
     if request.method == "POST":
         start_date = request.form.get("start_date") 
-        print(start_date)
+        
         end_date = request.form.get("end_date")
         #start_date = datetime.strptime(start_date, '%Y-%m-%d')
         #end_date = datetime.strptime(end_date, '%Y-%m-%d')

@@ -30,10 +30,26 @@
                             <input type="submit" value="Ara">
                         </form>
                         
-                        {% for event in events %}
-                        <p>{{ event}}</p>
+                        {% if events %}
+                        <div id="results" class = "pt-4">
+                            <h5>Sonuçlar</h5>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-text"></span>
+                                    <div class="form-control" id="total">
+                                        {% for event in events %}
                         
-                        {% endfor %}
+                                        <p>{{ event}}</p>
+                                        
+                                        {% endfor %}
+                                       
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                        
+                        {% endif %}
+                       
                        
                        
                        
