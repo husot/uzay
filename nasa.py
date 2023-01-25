@@ -3,6 +3,7 @@ import requests
 from datetime import datetime
 
 
+
 payload = {}
 headers= {
   "apikey": "VE3bah46ie3zgKBH7FFdLRS3M8KJIYndIikpgm61"
@@ -24,15 +25,15 @@ def index():
         #start_date = datetime.strptime(start_date, '%Y-%m-%d')
         #end_date = datetime.strptime(end_date, '%Y-%m-%d')
        
-
+        # API giriş ve dosyayı çekme
         url ="https://api.nasa.gov/neo/rest/v1/feed?start_date="+start_date+"&end_date="+end_date+"&api_key="+api_key
         response = requests.request("GET", url, headers=headers, data = payload)
-        app.logger.info(response)
-            
+        app.logger.info(response)   
         infos =  response.json()
         deneme=infos["near_earth_objects"]
-            
-        ######### KMLER
+        ##################
+
+        ###############  KMLER
         closest_points=[]
         for listeler in deneme:
             for item in deneme[listeler]:
@@ -49,6 +50,7 @@ def index():
         float_kms=[]
         for i in kms:
             float_kms.append(float(i))
+        ######################
 
         ######## İSİMLER
         closest_names=[]
@@ -56,16 +58,13 @@ def index():
             for item in deneme[listeler]:
                 isimler=item["name"]
                 closest_names.append(isimler)
-
-
         ######################
+
         isim_km=list(zip(closest_names,float_kms))
-            # float_kms.sort()
-            # top_10=float_kms[:10]
         sorted_list = sorted(isim_km, key=lambda x: x[1])
         sorted_list=sorted_list[:10]
 
-        return render_template("index2.html", events = sorted_list)
-    return render_template('index2.html')
+        return render_template("index.html", events = sorted_list)
+    return render_template('index.html')
 if __name__ == "__main__":
     app.run(debug=True)
